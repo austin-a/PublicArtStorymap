@@ -1,0 +1,167 @@
+<html>
+  <head>
+    <title>Layout Template - Read Me</title>
+    <style>
+      .selector {
+          color: red;
+      }
+      
+      .heading {
+          background-color: #D8E0E2;
+          background-repeat: repeat-x;
+          border-bottom: 1px solid #FFFFFF;
+          border-top: 1px solid #FFFFFF;
+          color: black;
+          font-family: Verdana, Arial, Helvetica, sans-serif;
+          font-size: 16px;
+          font-weight: bold;
+          letter-spacing: 1.1px;
+          margin: 15px 0 10px;
+          padding: 3px 10px;
+          text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+  <h2>Installing an Configuring the Map Tour Application</h2>
+    <a name="top"></a>
+    <p>This read-me file explains how to set up the Map Tour application to run on your web server and modify its content to suit your purposes.</p>
+    <div class="heading">Table of Contents</div>
+    <ul>
+      <li>
+        <a href="#deploy">Install the Web application</a>
+      </li>
+      <li>
+        <a href="#configure">Configure the application</a>
+      </li>
+    </ul>
+    <a name="deploy"></a>
+    <h3 class="heading">Install the Web application</h3>
+    <p>
+    These instructions assume that you have a Web server like <a href="http://www.iis.net/">Internet Information Services(IIS)</a>
+    installed and configured on your machine. If you are using another Web server, the general installation steps will be the same but you will need to check your Web server's documentation for specific information on deploying and testing the application.
+  <ol>
+      <li>
+        Copy the contents of the zip file into your web server's root directory. In IIS, the default location for the web server's root folder is 
+        <code>c:\inetpub\wwwroot</code>. 
+      </li>
+      <li>
+        Test the page using the following URL: <a href="http://localhost/maptour/index.html">http://localhost/maptour/index.html</a>. 
+      </li>
+    </ol>
+    <a href="#top">Top</a>
+    <a name="configure"></a>
+    <h3 class="heading">Configure the application</h3>
+    <p>
+      There are two basic steps in configuring  the application.  The first step is to format your data (locations and photos) so that the application can use it.
+      The second step is to set the application's configuration variables so that the application will present your specific information.
+  <ol>
+        <li>
+        <strong>Formatting your Data </strong>
+        <blockquote>
+          <p>The application data is stored in a CSV file, which is downloaded and read at runtime. It is therefore required that the CSV file be formatted in the expected way so the application can read it.</p>
+        </blockquote>
+        </li>
+  <blockquote>
+    <p>              A sample CSV file (<em>locations.csv</em>) has been provided. It contains 7 fields:        </p>
+  </blockquote>
+
+    <blockquote>
+      <table width="778" border="0">
+        <tr>
+          <td>&nbsp;</td>
+          <td><em>Name</em></td>
+          <td>Title to be displayed in the photo placard (bottom left of photo).</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><em>Description</em></td>
+          <td>Description to be displayed in the photo placard (bottom right of photo).</td>
+        </tr>
+        <tr>
+          <td width="48" valign="top">&nbsp;</td>
+          <td width="198" valign="top"><em>Icon_type</em></td>
+          <td width="518" valign="top">Indicates color with which photo's location will be depicted in the map. Allowable values are &quot;R&quot; (red) and &quot;B&quot; (blue). Note that numbers are assigned automatically based on order.  </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><em>Long</em></td>
+          <td>Longitude of photo location.</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><em>Lat</em></td>
+          <td>Latitude of photo location.</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><em>URL</em></td>
+          <td>URL for photo.</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><em>Thumb_URL</em></td>
+          <td>URL for thumbnail of photo (used in the gallery).</td>
+        </tr>
+        </table>
+    </blockquote>
+
+  <blockquote>
+    <p>The <em>locations.csv</em> contains sample data which we included for your reference. Feel free to remove all the sample records and use the <em>locations.csv</em> as your starting data template. Once you have populated <em>locations.csv</em> with your own data, you're ready to move on to step 2, Setting the Configuration Variables.</p>
+  </blockquote>
+    <li><strong>Setting the Configuration Variables</strong>
+      <blockquote>
+        <p>Open <em>index.html</em> and scroll down to the section marked &quot;begin config section&quot;. There are 8 variables that you can modify. The final variable is optional.</p>
+      </blockquote>
+    </li>
+  <blockquote>	
+    <table width="778" border="0">
+      <tr>
+        <td>&nbsp;</td>
+        <td><em>TITLE </em></td>
+        <td>The title for your application. Appears at the very top of the page.</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><em>BYLINE</em></td>
+        <td>A one-sentence subtitle for the app. Appears toward the top of the page, below the title.</td>
+      </tr>
+      <tr>
+        <td width="48" valign="top">&nbsp;</td>
+        <td width="198" valign="top"><em>INTRO_PICTURE</em></td>
+        <td width="518" valign="top">First picture that the user sees. It can be a repeat of a picture in your presentation. In the intro context, however, the picture will not be tied to a location.</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><em>INTRO_NAME</em></td>
+        <td>Title for the intro picture.</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><em>INTRO_DESCRIPTION</em></td>
+        <td>Description for the intro picture.</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><em>CSV_FILE</em></td>
+        <td>URL for the CSV file. The CSV file will be downloaded by the application.</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><em>BASEMAP_URL</em></td>
+        <td>URL to the ArcGIS service that will provide the basemap.</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>INITIAL_EXTENT</td>
+        <td>Provides the extent at which the map will initially appear. By default, this variable is commented out. You may either specify an extent or leave the variable inactive, in which case the map will simply default to the extent of all of the locations in the CSV_FILE.</td>
+      </tr>
+    </table>
+    <p>Once you have completed the configuration section, save the file and test your application: <a href="http://localhost/maptour/index.html">http://localhost/maptour/index.html</a>.  It should now display your photos and locations, as well as the other information you have specified.</p>
+  </blockquote>
+  </ol>
+
+</p>
+    <a href="#top">Top</a>
+  </body>
+</html>
